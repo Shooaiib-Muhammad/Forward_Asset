@@ -88,7 +88,7 @@
                             </li>
 
                             
-                              <!-- <li>
+                              <li>
                                 <a href="#" title="Package Info" data-filter-tags="package info">
                                 <i class="fa fa-angle-double-down"></i>
                                     <span class="nav-link-text" data-i18n="nav.package_info">Project</span>
@@ -110,7 +110,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li> -->
+                            </li> 
                            <!-- <li class="nav-title">Tools & Components</li>
                             <li>
                                 <a href="#" title="UI Components" data-filter-tags="ui components">

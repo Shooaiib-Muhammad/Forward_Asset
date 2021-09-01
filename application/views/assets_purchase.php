@@ -7,6 +7,7 @@ if(!($this->session->has_userdata('user_id'))){
 ?>
 
 
+                     
 <?php
       $this->load->view('header');
     ?>
@@ -285,7 +286,8 @@ if(!($this->session->has_userdata('user_id'))){
                    <div class="form-group col-md-3">
                      <div>
                      <label for="img">Upload Image:</label>
-                    <input type="file" id="img" name="img" accept="image/*">
+                     
+                    
                         </div> 
                    </div>
 
@@ -533,6 +535,7 @@ if(!($this->session->has_userdata('user_id'))){
                                                                             <thead>
                                                                                 <tr>
                                                                                 <th> Image</th>
+                                                                                <th>Code</th>
                                                                                     <th>Type</th>
                                                                                     <th>Asset</th>
                                                                                     <th>Building</th>
@@ -541,7 +544,7 @@ if(!($this->session->has_userdata('user_id'))){
                                                                                     <th>Cost</th>
 
                                                                                     <th>Purchase</th>
-                                                                                    <th>Expiry</th>
+                                                                                 
                                                             
                                                                                     <th>Dep. Method</th>
                                                                                     <th>Org. Life</th>
@@ -560,16 +563,17 @@ if(!($this->session->has_userdata('user_id'))){
 
                                                                 <tr>
                                                                 <td ><img src="<?php echo base_url('/assets/img/img/'.$Key['image']) ?>" alt="Asset Picture" height="50px" width="50px" style="border-radius: 50%;"/></td>
-                                                                    <td ><?php echo $Key['AssertType']; ?></td>
+                                                                <td ><?php echo $Key['TransCode']; ?></td>  
+                                                                <td ><?php echo $Key['AssertType']; ?></td>
                                                                     <td ><?php echo $Key['Name']; ?></td>
                                                                     <td ><?php echo $Key['BuildingName']; ?></td>
 
                                                                     <td ><?php echo $Key['DeptName']; ?></td>
                                                                     <td ><?php echo $Key['SectionName']; ?></td>
-                                                                    <td ><?php echo $Key['Cost']; ?></td>
+                                                                    <td ><?php echo Round($Key['Cost']); ?></td>
 
                                                                     <td ><?php echo $Key['PurcaseDate']; ?></td>
-                                                                    <td ><?php echo $Key['ExpiryDate']; ?></td>
+                                                                   
                                                  
 
                                                                     <td ><?php echo $Key['DepresionMethod']; ?></td>
@@ -599,7 +603,10 @@ if(!($this->session->has_userdata('user_id'))){
                             </div>
                         </div>
                     </main>
+               <?php
                
+              
+               ?>
                     <?php
         $this->load->view('after-main');
        ?>

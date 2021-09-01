@@ -59,288 +59,288 @@ class AMS extends CI_Model
 
     }
 
-//     public function getProjectValues(){
-//         $query = $this->db->query('SELECT        dbo.view_Project_head.*
-//         FROM            dbo.view_Project_head');
-//         return $query->result_array();
-//     }
+    public function getProjectValues(){
+        $query = $this->db->query('SELECT        dbo.view_Project_head.*
+        FROM            dbo.view_Project_head');
+        return $query->result_array();
+    }
     
-//     public function getProjectValue($proId){
-//         $query = $this->db->query("SELECT  dbo.view_Project_head.*
-//         FROM            dbo.view_Project_head
-//         WHERE ProjectHID='$proId'"
-//     );
-//         return $query->result_array();
-//     }
+    public function getProjectValue($proId){
+        $query = $this->db->query("SELECT  dbo.view_Project_head.*
+        FROM            dbo.view_Project_head
+        WHERE ProjectHID='$proId'"
+    );
+        return $query->result_array();
+    }
 
-//     Public function CallDept(){
-//         $query=$this->db->query('SELECT        CustName, LocalCustID
-//         FROM            dbo.tbl_Inv_LocalCust');
-//         return $query->result_array();
+    Public function CallDept(){
+        $query=$this->db->query('SELECT        CustName, LocalCustID
+        FROM            dbo.tbl_Inv_LocalCust');
+        return $query->result_array();
 
-//     }
+    }
 
-//     Public function CallMid(){
-//         $query=$this->db->query('SELECT   dbo.view_Project_middel.*
-//         FROM     dbo.view_Project_middel');
-//         return $query->result_array();
+    Public function CallMid(){
+        $query=$this->db->query('SELECT   dbo.view_Project_middel.*
+        FROM     dbo.view_Project_middel');
+        return $query->result_array();
 
-//     }
+    }
 
-//     public function addProject($prName, $prStrtDte, $prEndDte, $prDptNme,  $prStatus,  $prEntryDate ,$prNarration,$user){
+    public function addProject($prName, $prStrtDte, $prEndDte, $prDptNme,  $prStatus,  $prEntryDate ,$prNarration,$user){
 
 
-//         $query = $this->db->query("INSERT INTO dbo.tbl_Project_H
-//         (ProjectName
-//         ,StartDate
-//         ,CompDate
-//         ,DeptID
-//         ,CompStatus
-//         ,EntryDate
-//         ,Narration
-//         ,UserID)
-//   VALUES
-//         ('$prName',
-//         '$prStrtDte',
-//         '$prEndDte',
-//         '$prDptNme',
-//         '$prStatus',
-//         '$prEntryDate',
-//         '$prNarration',
-//         '$user')");
+        $query = $this->db->query("INSERT INTO dbo.tbl_Project_H
+        (ProjectName
+        ,StartDate
+        ,CompDate
+        ,DeptID
+        ,CompStatus
+        ,EntryDate
+        ,Narration
+        ,UserID)
+  VALUES
+        ('$prName',
+        '$prStrtDte',
+        '$prEndDte',
+        '$prDptNme',
+        '$prStatus',
+        '$prEntryDate',
+        '$prNarration',
+        '$user')");
         
-//         if ($query) {
-//             $this->session->set_flashdata('Proinfo', 'Project has been added. ');
-//             redirect('Project');
-//         } else {
-//             $this->session->set_flashdata('danger', 'There is an error while creating project.');
-//             redirect('Project');
-//         }
+        if ($query) {
+            $this->session->set_flashdata('Proinfo', 'Project has been added. ');
+            redirect('Project');
+        } else {
+            $this->session->set_flashdata('danger', 'There is an error while creating project.');
+            redirect('Project');
+        }
 
-//     }
+    }
 
-//     public function editProject($prName, $prStrtDte, $prEndDte, $prDptNme,  $prStatus,  $proId ,$prNarration,$user){
+    public function editProject($prName, $prStrtDte, $prEndDte, $prDptNme,  $prStatus,  $proId ,$prNarration,$user){
 
 
-//         $query = $this->db->query("UPDATE tbl_Project_H 
-//         SET  ProjectName  =  '$prName' , StartDate  =  '$prStrtDte'  , CompDate  =  '$prEndDte'
-//            , DeptID  =  '$prDptNme'  , CompStatus  =  '$prStatus' , Narration  =  '$prNarration' WHERE   ProjectHID  =  '$proId' ");
+        $query = $this->db->query("UPDATE tbl_Project_H 
+        SET  ProjectName  =  '$prName' , StartDate  =  '$prStrtDte'  , CompDate  =  '$prEndDte'
+           , DeptID  =  '$prDptNme'  , CompStatus  =  '$prStatus' , Narration  =  '$prNarration' WHERE   ProjectHID  =  '$proId' ");
         
-//         if ($query) {
-//             $this->session->set_flashdata('Proinfo', 'Project has been Updated. ');
-//             redirect('Project');
-//         } else {
-//             $this->session->set_flashdata('danger', 'There is an error while Updating project.');
-//             redirect('Project');
-//         }
+        if ($query) {
+            $this->session->set_flashdata('Proinfo', 'Project has been Updated. ');
+            redirect('Project');
+        } else {
+            $this->session->set_flashdata('danger', 'There is an error while Updating project.');
+            redirect('Project');
+        }
 
-//     }
+    }
 
 
-//     public function deleteProject($proId){
+    public function deleteProject($proId){
          
-//         $query=$this->db->query("DELETE FROM tbl_Project_H
-//         WHERE ProjectHID='$proId'");
-//        if ($query) {
-//         $this->session->set_flashdata('ProDelinfo', 'Project has been added. ');
-//         redirect('Project');
-//     } else {
-//         $this->session->set_flashdata('danger', 'There is an error while creating project.');
-//         redirect('Project');
-//     }
+        $query=$this->db->query("DELETE FROM tbl_Project_H
+        WHERE ProjectHID='$proId'");
+       if ($query) {
+        $this->session->set_flashdata('ProDelinfo', 'Project has been added. ');
+        redirect('Project');
+    } else {
+        $this->session->set_flashdata('danger', 'There is an error while creating project.');
+        redirect('Project');
+    }
 
 
 
-//     }
+    }
 
-//     public function AddDepartment($depProName, $depName, $ProCurDate, $user){
+    public function AddDepartment($depProName, $depName, $ProCurDate, $user){
 
 
-//         $query = $this->db->query("INSERT INTO  dbo.tbl_Project_M 
-//         (
-//             DeptID 
-//         , EntryDate 
-//         , UserID 
-//         , ProjectHID )
-//   VALUES
-//         (
-//         '$depName',
-//         '$ProCurDate',
-//         $user,
-//         '$depProName')");
+        $query = $this->db->query("INSERT INTO  dbo.tbl_Project_M 
+        (
+            DeptID 
+        , EntryDate 
+        , UserID 
+        , ProjectHID )
+  VALUES
+        (
+        '$depName',
+        '$ProCurDate',
+        $user,
+        '$depProName')");
         
-//         if ($query) {
-//             $this->session->set_flashdata('Proinfo', 'Department has been added. ');
-//             redirect('Department');
-//         } else {
-//             $this->session->set_flashdata('danger', 'There is an error while creating Department.');
-//             redirect('Department');
-//         }
+        if ($query) {
+            $this->session->set_flashdata('Proinfo', 'Department has been added. ');
+            redirect('Department');
+        } else {
+            $this->session->set_flashdata('danger', 'There is an error while creating Department.');
+            redirect('Department');
+        }
 
-//     }
+    }
 
-//     public function deleteDepartment($proId){
+    public function deleteDepartment($proId){
         
-//         $query=$this->db->query("DELETE FROM  dbo . tbl_Project_M 
-//         WHERE ProjectID='$proId'");
-//        if ($query) {
-//         $this->session->set_flashdata('ProDelDepinfo', 'Project has been added. ');
-//         redirect('Department');
-//     } else {
-//         $this->session->set_flashdata('danger', 'There is an error while creating project.');
-//         redirect('Department');
-//     }
+        $query=$this->db->query("DELETE FROM  dbo . tbl_Project_M 
+        WHERE ProjectID='$proId'");
+       if ($query) {
+        $this->session->set_flashdata('ProDelDepinfo', 'Project has been added. ');
+        redirect('Department');
+    } else {
+        $this->session->set_flashdata('danger', 'There is an error while creating project.');
+        redirect('Department');
+    }
 
 
 
-//     }
+    }
 
-//     public function getMidValue($proId){
-//         $query = $this->db->query("SELECT  dbo.view_Project_middel.*
-//         FROM            dbo.view_Project_middel
-//         WHERE ProjectID='$proId'"
-//     );
-//         return $query->result_array();
-//     }
+    public function getMidValue($proId){
+        $query = $this->db->query("SELECT  dbo.view_Project_middel.*
+        FROM            dbo.view_Project_middel
+        WHERE ProjectID='$proId'"
+    );
+        return $query->result_array();
+    }
 
-//     public function editDep($depProName, $depName,$user, $Proid){
+    public function editDep($depProName, $depName,$user, $Proid){
 
 
 
-//         $query = $this->db->query("UPDATE  dbo . tbl_Project_M 
-//    SET  ProjectHID  =  '$depProName'
-//       , DeptID  =  '$depName' 
-//       , UserID  =  '$user'
-//      WHERE   ProjectID  =  '$Proid' ");
+        $query = $this->db->query("UPDATE  dbo . tbl_Project_M 
+   SET  ProjectHID  =  '$depProName'
+      , DeptID  =  '$depName' 
+      , UserID  =  '$user'
+     WHERE   ProjectID  =  '$Proid' ");
         
-//         if ($query) {
-//             $this->session->set_flashdata('Proinfo', 'Department has been Updated. ');
-//             redirect('Department');
-//         } else {
-//             $this->session->set_flashdata('danger', 'There is an error while Updating project.');
-//             redirect('Department');
-//         }
+        if ($query) {
+            $this->session->set_flashdata('Proinfo', 'Department has been Updated. ');
+            redirect('Department');
+        } else {
+            $this->session->set_flashdata('danger', 'There is an error while Updating project.');
+            redirect('Department');
+        }
 
-//     }
+    }
 
-//     function CallProject(){
-//         $query=$this->db->query('SELECT        ProjectHID, ProjectName
-//         FROM            dbo.tbl_Project_H');
-//         return $query->result_array();
+    function CallProject(){
+        $query=$this->db->query('SELECT        ProjectHID, ProjectName
+        FROM            dbo.tbl_Project_H');
+        return $query->result_array();
 
-//     }
+    }
 
 
-//     function getDependentValue($proId){
-//         $query = $this->db->query("SELECT dbo.tbl_Project_M.ProjectHID, dbo.tbl_Inv_LocalCust.CustName, dbo.tbl_Inv_LocalCust.LocalCustID
-//         FROM            dbo.tbl_Project_M INNER JOIN
-//                                  dbo.tbl_Inv_LocalCust ON dbo.tbl_Project_M.DeptID = dbo.tbl_Inv_LocalCust.LocalCustID
-//         WHERE        (dbo.tbl_Project_M.ProjectHID = '$proId')"
-//         );
-//         return $query->result_array();
-//       }
+    function getDependentValue($proId){
+        $query = $this->db->query("SELECT dbo.tbl_Project_M.ProjectHID, dbo.tbl_Inv_LocalCust.CustName, dbo.tbl_Inv_LocalCust.LocalCustID
+        FROM            dbo.tbl_Project_M INNER JOIN
+                                 dbo.tbl_Inv_LocalCust ON dbo.tbl_Project_M.DeptID = dbo.tbl_Inv_LocalCust.LocalCustID
+        WHERE        (dbo.tbl_Project_M.ProjectHID = '$proId')"
+        );
+        return $query->result_array();
+      }
 
-//       Public function CallMat(){
-//         $query=$this->db->query('SELECT L4Name, Code
-//         FROM    dbo.tbl_Inv_L4');
-//         return $query->result_array();
+      Public function CallMat(){
+        $query=$this->db->query('SELECT L4Name, Code
+        FROM    dbo.tbl_Inv_L4');
+        return $query->result_array();
 
-//     }
+    }
   
-//     Public function CallUom(){
-//         $query=$this->db->query('SELECT        UOM
-//         FROM            dbo.tbl_Pur_UnitofMeasurementDtl
-//         GROUP BY UOM');
-//         return $query->result_array();
+    Public function CallUom(){
+        $query=$this->db->query('SELECT        UOM
+        FROM            dbo.tbl_Pur_UnitofMeasurementDtl
+        GROUP BY UOM');
+        return $query->result_array();
 
-//     }
+    }
 
-//     public function AddMaterial($matProName, $matDepName, $matName, $matQty, $matUom, $matNar,$user, $ProCurDate){
+    public function AddMaterial($matProName, $matDepName, $matName, $matQty, $matUom, $matNar,$user, $ProCurDate){
 
 
-//         $query = $this->db->query("INSERT INTO  dbo . tbl_Project_D 
-//         ( ProjectHID 
-//            , DeptID  
-//            , Code 
-//            , Qty 
-//            , UOM 
-//            , Narration 
-//            , UserID 
-//            , EntryDate )
-//   VALUES
-//         ( '$matProName' , '$matDepName'   , '$matName'     , '$matQty'    , '$matUom'  , '$matNar'     , '$user'  ,  '$ProCurDate' )");
+        $query = $this->db->query("INSERT INTO  dbo . tbl_Project_D 
+        ( ProjectHID 
+           , DeptID  
+           , Code 
+           , Qty 
+           , UOM 
+           , Narration 
+           , UserID 
+           , EntryDate )
+  VALUES
+        ( '$matProName' , '$matDepName'   , '$matName'     , '$matQty'    , '$matUom'  , '$matNar'     , '$user'  ,  '$ProCurDate' )");
         
-//         if ($query) {
-//             $this->session->set_flashdata('Proinfo', 'Material has been added. ');
-//             redirect('Material');
-//         } else {
-//             $this->session->set_flashdata('danger', 'There is an error while creating Material.');
-//             redirect('Material');
-//         }
+        if ($query) {
+            $this->session->set_flashdata('Proinfo', 'Material has been added. ');
+            redirect('Material');
+        } else {
+            $this->session->set_flashdata('danger', 'There is an error while creating Material.');
+            redirect('Material');
+        }
 
-//     }
+    }
 
 
-//     function CallMatData(){
+    function CallMatData(){
 
-//             $query=$this->db->query('SELECT  dbo.View_Project_Material.*
-//             FROM            dbo.View_Project_Material');
-//             return $query->result_array();
+            $query=$this->db->query('SELECT  dbo.View_Project_Material.*
+            FROM            dbo.View_Project_Material');
+            return $query->result_array();
     
 
-//     }
+    }
 
 
-//     public function deleteMaterial($proId){
+    public function deleteMaterial($proId){
         
-//         $query=$this->db->query("DELETE FROM  dbo . tbl_Project_D 
-//         WHERE  ProjectDID='$proId'");
-//        if ($query) {
-//         $this->session->set_flashdata('ProDelDepinfo', 'Material has been Deleted. ');
-//         redirect('Material');
-//     } else {
-//         $this->session->set_flashdata('danger', 'There is an error while Deleting Material.');
-//         redirect('Material');
-//     }
-// }
+        $query=$this->db->query("DELETE FROM  dbo . tbl_Project_D 
+        WHERE  ProjectDID='$proId'");
+       if ($query) {
+        $this->session->set_flashdata('ProDelDepinfo', 'Material has been Deleted. ');
+        redirect('Material');
+    } else {
+        $this->session->set_flashdata('danger', 'There is an error while Deleting Material.');
+        redirect('Material');
+    }
+}
 
 
-//         public function getMaterialValue($proId){
-//             $query = $this->db->query("SELECT  dbo.View_Project_Material.*
-//             FROM            dbo.View_Project_Material
-//             WHERE ProjectDID='$proId'"
-//         );
-//             return $query->result_array();
-//         }
+        public function getMaterialValue($proId){
+            $query = $this->db->query("SELECT  dbo.View_Project_Material.*
+            FROM            dbo.View_Project_Material
+            WHERE ProjectDID='$proId'"
+        );
+            return $query->result_array();
+        }
 
 
-//         public function editMaterial($matDid, $matPName, $matDName,$matName, $matQtyy, $matUomm, $matNarrat, $user){
+        public function editMaterial($matDid, $matPName, $matDName,$matName, $matQtyy, $matUomm, $matNarrat, $user){
 
 
 
-//             $query = $this->db->query("UPDATE  dbo . tbl_Project_D 
-//             SET  ProjectHID  =  '$matPName'  
-//                , DeptID  =  ' $matDName' 
-//                , Code  =  '$matName'  
-//                , Qty  =  '$matQtyy'  
-//                , UOM  =  '$matUomm'  
-//                , Narration  =  '$matNarrat'  
-//                , UserID  =  '$user'  
+            $query = $this->db->query("UPDATE  dbo . tbl_Project_D 
+            SET  ProjectHID  =  '$matPName'  
+               , DeptID  =  ' $matDName' 
+               , Code  =  '$matName'  
+               , Qty  =  '$matQtyy'  
+               , UOM  =  '$matUomm'  
+               , Narration  =  '$matNarrat'  
+               , UserID  =  '$user'  
                
-//           WHERE ProjectDID='$matDid'");
+          WHERE ProjectDID='$matDid'");
             
-//             if ($query) {
-//                 $this->session->set_flashdata('Proinfo', 'Material has been Updated. ');
-//                 redirect('Material');
-//             } else {
-//                 $this->session->set_flashdata('danger', 'There is an error while Updating Material.');
-//                 redirect('Material');
-//             }
+            if ($query) {
+                $this->session->set_flashdata('Proinfo', 'Material has been Updated. ');
+                redirect('Material');
+            } else {
+                $this->session->set_flashdata('danger', 'There is an error while Updating Material.');
+                redirect('Material');
+            }
     
-//         }
+        }
 
 
-///////////////////////////////////////// Asset Type ///////////////////////////////////////////////////////////////
+/////////////////////////////////////// Asset Type ///////////////////////////////////////////////////////////////
 
                  public function AddAssetType($type, $status){
 
@@ -601,18 +601,7 @@ public function getDepartmentsLocation(){
         
         }
 
-        public function deleteDepartment($Id){
-        
-            $query=$this->db->query("DELETE FROM  tbl_HRM_Dept 
-            WHERE  DeptID='$Id'");
-           if ($query) {
-            $this->session->set_flashdata('ProDelDepinfo', 'Department has been Deleted. ');
-            redirect('assetlocation');
-        } else {
-           $this->session->set_flashdata('danger', 'There is an error while Deleting Department.');
-            redirect('assetlocation');
-        }
-    }        
+          
 
     
     
@@ -905,7 +894,7 @@ public function getAssets(){
       }
 
           
- public function AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$pic){
+ public function AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$code,$des,$depMeth,$pic){
     date_default_timezone_set("Asia/Karachi");
      $query = $this->db->query("INSERT INTO tbl_Assert
       (  
@@ -923,12 +912,13 @@ public function getAssets(){
       , OverHallCost 
       , DpMethodID 
       , State
+      , TransCode
       , VendorID
       , status
       , des
  )
          VALUES
-            ('$build', '$dept', '$sec', '$type','$name', '$pic','$pDate', '$overDate', '$orig','$exp', '$cost', '$overcost', '$depMeth','$state','$ven','$status', '$des')");
+            ('$build', '$dept', '$sec', '$type','$name', '$pic','$pDate', '$overDate', '$orig','$exp', '$cost', '$overcost', '$depMeth','$state','$code','$ven','$status', '$des')");
             
             if ($query) {
                 $this->session->set_flashdata('Proinfo', 'Asset has been added. ');
@@ -1037,5 +1027,11 @@ public function getAssets(){
 
           
   
-          
+          public function getimages(){
+                  $query=$this->db->query("SELECT        dbo.View_156.CNIC, dbo.View_156.EmpPic
+FROM            dbo.Table_10 INNER JOIN
+                         dbo.View_156 ON dbo.Table_10.CNICN = dbo.View_156.CNIC
+WHERE        (dbo.View_156.EmpPic IS NOT NULL)");
+      return $query->result_array();   
+          }
 }

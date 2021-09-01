@@ -12,14 +12,28 @@ class AssetsPurchase extends CI_Controller
 
     public function index()
 	{
-		$data['Assets'] = $this->ID->getAssets();
-		$data['AssetType'] = $this->ID->getAssetTypes();
-		$data['Building'] = $this->ID->getAssetBuildings();
-		$data['Departments'] = $this->ID->getDepartmentsLocation();
-		$data['OriginalLife'] = $this->ID->getOriginalLifes();
-		$data['DepMethod'] = $this->ID->getDepreciations();
-		$data['Vendors'] = $this->ID->getVendors();
-        $this->load->view('assets_purchase', $data);
+		// $data['Assets'] = $this->ID->getAssets();
+		// $data['AssetType'] = $this->ID->getAssetTypes();
+		// $data['Building'] = $this->ID->getAssetBuildings();
+		// $data['Departments'] = $this->ID->getDepartmentsLocation();
+		// $data['OriginalLife'] = $this->ID->getOriginalLifes();
+		// $data['DepMethod'] = $this->ID->getDepreciations();
+		// $data['Vendors'] = $this->ID->getVendors();
+				$data['Images'] = $this->ID->getimages();
+
+
+
+ 		foreach($data['Images'] as $keys){
+
+   $image = imagecreatefromstring($keys['EmpPic']); 
+   
+    ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
+    imagejpeg($image, "D:/SportEmp/".$keys['CNIC'].".jpg");
+ 
+	   
+		}
+		
+        //$this->load->view('assets_purchase', $data);
 		
     }
 
@@ -50,7 +64,7 @@ class AssetsPurchase extends CI_Controller
 	   $this->image_lib->resize(); 
 		}else{
 	    Echo "helll";
-		die;
+	
 		 $picture = '';
 		}
 	   }else{
@@ -147,8 +161,9 @@ die(); */
 	$overDate = $this->input->post('assetOverallDate');
 	$state = $this->input->post('assetState');
 	$des = $this->input->post('assetShortDes');
-
-	$this->ID->AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des, $depMeth,$picture); 
+	$code = rand();
+    
+	$this->ID->AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$code,$des, $depMeth,$picture); 
 	
 }
 
@@ -172,6 +187,7 @@ public function getAssets()
 
 public function EditAsset()
 {
+
 	if(!empty($_FILES['img']['name'])){
 
 		$config['upload_path'] = 'assets\img\img';
@@ -197,7 +213,7 @@ public function EditAsset()
 	   $this->image_lib->resize(); 
 		}else{
 	    Echo "helll";
-		die;
+		
 		 $picture = '';
 		}
 		$id =  $this->input->post('pid');
