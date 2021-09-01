@@ -287,7 +287,7 @@ if(!($this->session->has_userdata('user_id'))){
                      <div>
                      <label for="img">Upload Image:</label>
                      
-                    
+                    <input type="file" name="img"/>
                         </div> 
                    </div>
 

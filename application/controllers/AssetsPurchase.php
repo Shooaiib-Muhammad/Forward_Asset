@@ -12,28 +12,28 @@ class AssetsPurchase extends CI_Controller
 
     public function index()
 	{
-		// $data['Assets'] = $this->ID->getAssets();
-		// $data['AssetType'] = $this->ID->getAssetTypes();
-		// $data['Building'] = $this->ID->getAssetBuildings();
-		// $data['Departments'] = $this->ID->getDepartmentsLocation();
-		// $data['OriginalLife'] = $this->ID->getOriginalLifes();
-		// $data['DepMethod'] = $this->ID->getDepreciations();
-		// $data['Vendors'] = $this->ID->getVendors();
-				$data['Images'] = $this->ID->getimages();
+		$data['Assets'] = $this->ID->getAssets();
+		$data['AssetType'] = $this->ID->getAssetTypes();
+		$data['Building'] = $this->ID->getAssetBuildings();
+		$data['Departments'] = $this->ID->getDepartmentsLocation();
+		$data['OriginalLife'] = $this->ID->getOriginalLifes();
+		$data['DepMethod'] = $this->ID->getDepreciations();
+		$data['Vendors'] = $this->ID->getVendors();
+		// 		$data['Images'] = $this->ID->getimages();
 
 
 
- 		foreach($data['Images'] as $keys){
+ 	// 	foreach($data['Images'] as $keys){
 
-   $image = imagecreatefromstring($keys['EmpPic']); 
+  //  $image = imagecreatefromstring($keys['EmpPic']); 
    
-    ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
-    imagejpeg($image, "D:/SportEmp/".$keys['CNIC'].".jpg");
+  //   ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
+  //   imagejpeg($image, "D:/SportEmp/".$keys['CNIC'].".jpg");
  
 	   
-		}
+		// }
 		
-        //$this->load->view('assets_purchase', $data);
+        $this->load->view('assets_purchase', $data);
 		
     }
 

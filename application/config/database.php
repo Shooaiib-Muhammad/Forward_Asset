@@ -94,8 +94,9 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-$db['default'] = array(
-	'dsn'	=> '',
+
+$db['MIS'] = array(
+		'dsn'	=> '',
 	'hostname' => 'server',
 	'username' => 'ajax',
 	'password' => 'Forward@123',

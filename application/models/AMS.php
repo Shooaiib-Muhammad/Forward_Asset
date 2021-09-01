@@ -9,6 +9,7 @@ class AMS extends CI_Model
 		parent::__construct();
 		$this->load->database();
         $this->load->library('session');
+        
 	}
 
 
@@ -60,13 +61,16 @@ class AMS extends CI_Model
     }
 
     public function getProjectValues(){
-        $query = $this->db->query('SELECT        dbo.view_Project_head.*
+       
+		 $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query('SELECT        dbo.view_Project_head.*
         FROM            dbo.view_Project_head');
         return $query->result_array();
     }
     
     public function getProjectValue($proId){
-        $query = $this->db->query("SELECT  dbo.view_Project_head.*
+         $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query("SELECT  dbo.view_Project_head.*
         FROM            dbo.view_Project_head
         WHERE ProjectHID='$proId'"
     );
@@ -74,14 +78,16 @@ class AMS extends CI_Model
     }
 
     Public function CallDept(){
-        $query=$this->db->query('SELECT        CustName, LocalCustID
+         $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query('SELECT        CustName, LocalCustID
         FROM            dbo.tbl_Inv_LocalCust');
         return $query->result_array();
 
     }
 
     Public function CallMid(){
-        $query=$this->db->query('SELECT   dbo.view_Project_middel.*
+         $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query('SELECT   dbo.view_Project_middel.*
         FROM     dbo.view_Project_middel');
         return $query->result_array();
 
@@ -89,8 +95,8 @@ class AMS extends CI_Model
 
     public function addProject($prName, $prStrtDte, $prEndDte, $prDptNme,  $prStatus,  $prEntryDate ,$prNarration,$user){
 
-
-        $query = $this->db->query("INSERT INTO dbo.tbl_Project_H
+ $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query("INSERT INTO dbo.tbl_Project_H
         (ProjectName
         ,StartDate
         ,CompDate
@@ -121,8 +127,8 @@ class AMS extends CI_Model
 
     public function editProject($prName, $prStrtDte, $prEndDte, $prDptNme,  $prStatus,  $proId ,$prNarration,$user){
 
-
-        $query = $this->db->query("UPDATE tbl_Project_H 
+ $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query("UPDATE tbl_Project_H 
         SET  ProjectName  =  '$prName' , StartDate  =  '$prStrtDte'  , CompDate  =  '$prEndDte'
            , DeptID  =  '$prDptNme'  , CompStatus  =  '$prStatus' , Narration  =  '$prNarration' WHERE   ProjectHID  =  '$proId' ");
         
@@ -138,8 +144,8 @@ class AMS extends CI_Model
 
 
     public function deleteProject($proId){
-         
-        $query=$this->db->query("DELETE FROM tbl_Project_H
+          $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query("DELETE FROM tbl_Project_H
         WHERE ProjectHID='$proId'");
        if ($query) {
         $this->session->set_flashdata('ProDelinfo', 'Project has been added. ');
@@ -154,9 +160,9 @@ class AMS extends CI_Model
     }
 
     public function AddDepartment($depProName, $depName, $ProCurDate, $user){
+ $MIS = $this->load->database('MIS', TRUE);
 
-
-        $query = $this->db->query("INSERT INTO  dbo.tbl_Project_M 
+        $query = $MIS->query("INSERT INTO  dbo.tbl_Project_M 
         (
             DeptID 
         , EntryDate 
@@ -180,8 +186,8 @@ class AMS extends CI_Model
     }
 
     public function deleteDepartment($proId){
-        
-        $query=$this->db->query("DELETE FROM  dbo . tbl_Project_M 
+         $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query("DELETE FROM  dbo . tbl_Project_M 
         WHERE ProjectID='$proId'");
        if ($query) {
         $this->session->set_flashdata('ProDelDepinfo', 'Project has been added. ');
@@ -196,7 +202,8 @@ class AMS extends CI_Model
     }
 
     public function getMidValue($proId){
-        $query = $this->db->query("SELECT  dbo.view_Project_middel.*
+         $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query("SELECT  dbo.view_Project_middel.*
         FROM            dbo.view_Project_middel
         WHERE ProjectID='$proId'"
     );
@@ -205,9 +212,9 @@ class AMS extends CI_Model
 
     public function editDep($depProName, $depName,$user, $Proid){
 
+ $MIS = $this->load->database('MIS', TRUE);
 
-
-        $query = $this->db->query("UPDATE  dbo . tbl_Project_M 
+        $query = $MIS->query("UPDATE  dbo . tbl_Project_M 
    SET  ProjectHID  =  '$depProName'
       , DeptID  =  '$depName' 
       , UserID  =  '$user'
@@ -224,7 +231,8 @@ class AMS extends CI_Model
     }
 
     function CallProject(){
-        $query=$this->db->query('SELECT        ProjectHID, ProjectName
+         $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query('SELECT        ProjectHID, ProjectName
         FROM            dbo.tbl_Project_H');
         return $query->result_array();
 
@@ -232,7 +240,8 @@ class AMS extends CI_Model
 
 
     function getDependentValue($proId){
-        $query = $this->db->query("SELECT dbo.tbl_Project_M.ProjectHID, dbo.tbl_Inv_LocalCust.CustName, dbo.tbl_Inv_LocalCust.LocalCustID
+         $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query("SELECT dbo.tbl_Project_M.ProjectHID, dbo.tbl_Inv_LocalCust.CustName, dbo.tbl_Inv_LocalCust.LocalCustID
         FROM            dbo.tbl_Project_M INNER JOIN
                                  dbo.tbl_Inv_LocalCust ON dbo.tbl_Project_M.DeptID = dbo.tbl_Inv_LocalCust.LocalCustID
         WHERE        (dbo.tbl_Project_M.ProjectHID = '$proId')"
@@ -241,14 +250,16 @@ class AMS extends CI_Model
       }
 
       Public function CallMat(){
-        $query=$this->db->query('SELECT L4Name, Code
+           $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query('SELECT L4Name, Code
         FROM    dbo.tbl_Inv_L4');
         return $query->result_array();
 
     }
   
     Public function CallUom(){
-        $query=$this->db->query('SELECT        UOM
+         $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query('SELECT        UOM
         FROM            dbo.tbl_Pur_UnitofMeasurementDtl
         GROUP BY UOM');
         return $query->result_array();
@@ -257,8 +268,8 @@ class AMS extends CI_Model
 
     public function AddMaterial($matProName, $matDepName, $matName, $matQty, $matUom, $matNar,$user, $ProCurDate){
 
-
-        $query = $this->db->query("INSERT INTO  dbo . tbl_Project_D 
+ $MIS = $this->load->database('MIS', TRUE);
+        $query = $MIS->query("INSERT INTO  dbo . tbl_Project_D 
         ( ProjectHID 
            , DeptID  
            , Code 
@@ -282,8 +293,8 @@ class AMS extends CI_Model
 
 
     function CallMatData(){
-
-            $query=$this->db->query('SELECT  dbo.View_Project_Material.*
+ $MIS = $this->load->database('MIS', TRUE);
+            $query=$MIS->query('SELECT  dbo.View_Project_Material.*
             FROM            dbo.View_Project_Material');
             return $query->result_array();
     
@@ -292,8 +303,8 @@ class AMS extends CI_Model
 
 
     public function deleteMaterial($proId){
-        
-        $query=$this->db->query("DELETE FROM  dbo . tbl_Project_D 
+         $MIS = $this->load->database('MIS', TRUE);
+        $query=$MIS->query("DELETE FROM  dbo . tbl_Project_D 
         WHERE  ProjectDID='$proId'");
        if ($query) {
         $this->session->set_flashdata('ProDelDepinfo', 'Material has been Deleted. ');
@@ -306,7 +317,8 @@ class AMS extends CI_Model
 
 
         public function getMaterialValue($proId){
-            $query = $this->db->query("SELECT  dbo.View_Project_Material.*
+             $MIS = $this->load->database('MIS', TRUE);
+            $query = $MIS->query("SELECT  dbo.View_Project_Material.*
             FROM            dbo.View_Project_Material
             WHERE ProjectDID='$proId'"
         );
@@ -317,8 +329,8 @@ class AMS extends CI_Model
         public function editMaterial($matDid, $matPName, $matDName,$matName, $matQtyy, $matUomm, $matNarrat, $user){
 
 
-
-            $query = $this->db->query("UPDATE  dbo . tbl_Project_D 
+ $MIS = $this->load->database('MIS', TRUE);
+            $query = $MIS->query("UPDATE  dbo . tbl_Project_D 
             SET  ProjectHID  =  '$matPName'  
                , DeptID  =  ' $matDName' 
                , Code  =  '$matName'  
@@ -689,7 +701,7 @@ public function getSectionsLocation(){
 ////////////////////////////////////////////////////////// Depreciation Method ///////////////////////////////////////////////////
 
 public function getDepreciations(){
-    $query=$this->db->query('  SELECT *
+    $query=$this->db->query('SELECT *
     FROM Tbl_Assets_Depression_method');
       return $query->result_array();   
       }
