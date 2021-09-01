@@ -906,7 +906,7 @@ public function getAssets(){
       }
 
           
- public function AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$code,$des,$depMeth,$pic){
+ public function AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$code,$des,$depMeth,$pic,$insdate,$user,$brand){
     date_default_timezone_set("Asia/Karachi");
      $query = $this->db->query("INSERT INTO tbl_Assert
       (  
@@ -928,9 +928,12 @@ public function getAssets(){
       , VendorID
       , status
       , des
+      ,InstallationDate
+      ,Assignto
+      ,BrandType
  )
          VALUES
-            ('$build', '$dept', '$sec', '$type','$name', '$pic','$pDate', '$overDate', '$orig','$exp', '$cost', '$overcost', '$depMeth','$state','$code','$ven','$status', '$des')");
+            ('$build', '$dept', '$sec', '$type','$name', '$pic','$pDate', '$overDate', '$orig','$exp', '$cost', '$overcost', '$depMeth','$state','$code','$ven','$status', '$des','$insdate','$user','$brand')");
             
             if ($query) {
                 $this->session->set_flashdata('Proinfo', 'Asset has been added. ');
@@ -943,14 +946,14 @@ public function getAssets(){
         }
 
 
-        public function EditAsset($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$pic){
+        public function EditAsset($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$pic,$insdate,$user,$brand){
             date_default_timezone_set("Asia/Karachi");
             $query = $this->db->query("UPDATE  dbo . tbl_Assert 
             SET   BID  =  '$build',DeptID  =  '$dept',SecID  =  '$sec', AsTypeID  =  '$type' , 
             AssetChartId  =  '$name',image = '$pic',PurcaseDate  =  '$pDate',OverHallDate  =  '$overDate', OriginalLifeID  =  '$orig',
 
             ExpiryDate  =  '$exp',Cost  =  '$cost',OverHallCost  =  '$overcost', DpMethodID  =  '$depMeth' , 
-            State  =  '$state',VendorID  =  '$ven',status  =  '$status', des  =  '$des' 
+            State  =  '$state',VendorID  =  '$ven',status  =  '$status', des  =  '$des' , InstallationDate  =  '$insdate' , Assignto  =  '$user' , BrandType  =  '$brand' 
           WHERE  AsstID='$id'");
             
             if ($query) {
@@ -963,13 +966,13 @@ public function getAssets(){
         
         }
 
-        public function EditAssetWithoutPicture($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth){
+        public function EditAssetWithoutPicture($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$insdate,$user,$brand){
             date_default_timezone_set("Asia/Karachi");
             $query = $this->db->query("UPDATE  dbo . tbl_Assert 
             SET   BID  =  '$build',DeptID  =  '$dept',SecID  =  '$sec', AsTypeID  =  '$type' , 
             AssetChartId  =  '$name',PurcaseDate  =  '$pDate',OverHallDate  =  '$overDate', OriginalLifeID  =  '$orig',
             ExpiryDate  =  '$exp',Cost  =  '$cost',OverHallCost  =  '$overcost', DpMethodID  =  '$depMeth' , 
-            State  =  '$state',VendorID  =  '$ven',status  =  '$status', des  =  '$des' 
+            State  =  '$state',VendorID  =  '$ven',status  =  '$status', des  =  '$des' ,InstallationDate  =  '$insdate' , Assignto  =  '$user' , BrandType  =  '$brand'
           WHERE  AsstID='$id'");
             
             if ($query) {
@@ -1046,4 +1049,6 @@ FROM            dbo.Table_10 INNER JOIN
 WHERE        (dbo.View_156.EmpPic IS NOT NULL)");
       return $query->result_array();   
           }
+
+        
 }

@@ -19,6 +19,7 @@ class AssetsPurchase extends CI_Controller
 		$data['OriginalLife'] = $this->ID->getOriginalLifes();
 		$data['DepMethod'] = $this->ID->getDepreciations();
 		$data['Vendors'] = $this->ID->getVendors();
+				// $data['employees'] = $this->ID->getimployees();
 		// 		$data['Images'] = $this->ID->getimages();
 
 
@@ -162,8 +163,11 @@ die(); */
 	$state = $this->input->post('assetState');
 	$des = $this->input->post('assetShortDes');
 	$code = rand();
-    
-	$this->ID->AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$code,$des, $depMeth,$picture); 
+  
+				$insdate = $this->input->post('insdate');
+	$user = $this->input->post('user');
+	$brand = $this->input->post('brand');
+	$this->ID->AddAsset($type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$code,$des, $depMeth,$picture,$insdate,$user,$brand); 
 	
 }
 
@@ -260,8 +264,10 @@ public function EditAsset()
 		$overDate = $this->input->post('assetOverallDate');
 		$state = $this->input->post('assetState');
 		$des = $this->input->post('assetShortDes');
-	
-		$this->ID->EditAsset($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$picture); 
+	$insdate = $this->input->post('insdate');
+	$user = $this->input->post('user');
+	$brand = $this->input->post('brand');
+		$this->ID->EditAsset($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$picture,$insdate,$user,$brand); 
 	}else{
 	
 		$id =  $this->input->post('pid');
@@ -308,8 +314,10 @@ public function EditAsset()
 		$overDate = $this->input->post('assetOverallDate');
 		$state = $this->input->post('assetState');
 		$des = $this->input->post('assetShortDes');
-	
-		$this->ID->EditAssetWithoutPicture($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth); 
+		$insdate = $this->input->post('insdate');
+	$user = $this->input->post('user');
+	$brand = $this->input->post('brand');
+		$this->ID->EditAssetWithoutPicture($id,$type,$name,$build,$dept,$sec,$cost,$pDate,$exp,$orig,$ven,$status,$overcost,$overDate,$state,$des,$depMeth,$insdate,$user,$brand); 
 	
 	   }
 

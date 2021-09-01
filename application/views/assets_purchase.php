@@ -222,7 +222,7 @@ if(!($this->session->has_userdata('user_id'))){
    <!--  <div class="modal-dialog" role="document">
         <div class="modal-content">-->
             <div class="modal-header">
-                <h1 class="modal-title">Add New Asset</h1>
+                <h1 class="modal-title">Asset information</h1>
                 
             </div>
             <div class="modal-body">
@@ -236,7 +236,7 @@ if(!($this->session->has_userdata('user_id'))){
                         </div>
                     </div>    
                    <div class="form-group col-md-3">
-                      <label >Asset Type </label>
+                      <label >Asset Type :</label>
                       <div>
                         <select class="form-control" name="assetType" onchange="getComboB(this)">
                         <option value="0" disabled>Select one of the following</option>
@@ -255,7 +255,7 @@ if(!($this->session->has_userdata('user_id'))){
                      </div>
                  </div> 
    <div class="form-group col-md-3">
-                      <label >Asset  </label>
+                      <label >Asset : </label>
                       <div>
                         <select class="form-control" name="asset" >
                         <option value="0" >Select one of the following</option>
@@ -322,19 +322,24 @@ if(!($this->session->has_userdata('user_id'))){
                         </div> 
                    </div>
                     <div class="form-group col-md-3">
-                        <label class="control-label">Cost</label>
+                        <label class="control-label">Cost :</label>
                         <div>
                             <input type="number" class="form-control input-lg" name="assetCost" placeholder="Enter Cost">
                         </div>
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label class="control-label">Purchase Date</label>
+                        <label class="control-label">Purchase Date :</label>
                         <div>
                             <input type="date" class="form-control input-lg" name="assetPurchaseDate" placeholder="Enter Purchase Date">
                         </div>
                     </div>
-
+ <div class="form-group col-md-3">
+                        <label class="control-label">installation Date :</label>
+                        <div>
+                            <input type="date" class="form-control input-lg" name="insdate" >
+                        </div>
+                    </div>
                     <div class="form-group col-md-3">
                     <label class="control-label" style="border 2px solid black"> Expiry Date</label> 
                     <button id= "myAnchor" class="btn btn-success btn-sm p-1 float-sm-right" >+</button>
@@ -346,7 +351,7 @@ if(!($this->session->has_userdata('user_id'))){
 
       
                     <div class="form-group col-md-3">
-                      <label>Depreciation Method </label>
+                      <label>Depreciation Method :</label>
                       <div>
                         <select class="form-control" name="assetDepMethId" >
                         <option value="0" disabled >Select one of the following</option>
@@ -366,7 +371,7 @@ if(!($this->session->has_userdata('user_id'))){
                  </div> 
 
                  <div class="form-group col-md-3">
-                      <label>Original Life </label>
+                      <label>Original Life :</label>
                       <div>
                         <select class="form-control" name="assetOriLifeId" >
                         <option value="0" disabled>Select one of the following</option>
@@ -387,7 +392,7 @@ if(!($this->session->has_userdata('user_id'))){
 
                 
                  <div class="form-group col-md-3">
-                      <label >Vendor </label>
+                      <label >Vendor :</label>
                       <div>
                         <select class="form-control" name="assetVenId" >
                         <option value="0" disabled >Select one of the following</option>
@@ -406,9 +411,14 @@ if(!($this->session->has_userdata('user_id'))){
                      </div>
                  </div> 
 
-
+  <div class="form-group col-md-3">
+                        <label class="control-label">Assign To:</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="user" placeholder="Assign To">
+                        </div>
+                    </div>
                  <div class="form-group col-md-3">
-                      <label >Status </label>
+                      <label >Status :</label>
                       <div>
                         <select class="form-control" name="assetStatus" >
                         <option value="" disabled>Select one of the following</option>
@@ -417,24 +427,33 @@ if(!($this->session->has_userdata('user_id'))){
                             </select>
                      </div>
                  </div> 
-
-   
+  <div class="form-group col-md-3">
+                      <label >Brand :</label>
+                      <div>
+                        <select class="form-control" name="brand" >
+                        <option value="" disabled>Select one of the following</option>
+                            <option value="Local">Local</option>
+                            <option value="Imported">Imported</option>
+                            </select>
+                     </div>
+                 </div> 
+     
                    <div class="form-group col-md-3">
-                        <label class="control-label">Overall Cost</label>
+                        <label class="control-label">Overall Cost :</label>
                         <div>
                             <input type="number" class="form-control input-lg" name="overCost" placeholder="Enter Overall Cost">
                         </div>
                     </div>
 
                     <div class="form-group col-md-3">
-                    <label class="control-label">Overall Date</label>
+                    <label class="control-label">Overall Date :</label>
                         <div>
                             <input type="date" class="form-control input-lg" name="assetOverallDate" placeholder="Enter Overall Date">
                         </div>
                     </div>
 
                     <div class="form-group col-md-3">
-                      <label >State </label>
+                      <label >State :</label>
                       <div>
                         <select class="form-control" name="assetState" >
                         <option value="" disabled >Select one of the following</option>
@@ -447,7 +466,7 @@ if(!($this->session->has_userdata('user_id'))){
                  </div> 
       
                     <div class="form-group ">
-                        <label class="control-label">Short Description</label>
+                        <label class="control-label">Short Description :</label>
                         <div>
                         <textarea name="assetShortDes" id="assetShortDesId" rows="5" cols="90" placeholder="Enter Short Description"></textarea>
                         </div>
@@ -666,6 +685,7 @@ $('#createAsset').click(function(e){
     $('select[name=assetDepMethId]').val('0');
     $('select[name=assetOriLifeId]').val('0');
     $('select[name=assetVenId]').val('0');
+    
 
 
 });
@@ -722,11 +742,15 @@ $('#tableExport').on('click',".btnEditAsset",function(e){
         llid
       }
       url = '<?php echo base_url('AssetsPurchase/getAsset') ?>'
-
+//alert(url);
     $.post(url,postData,
   function(data, status){
     var returnedData = JSON.parse(data);
+    console.log(returnedData);
     $("input[name=pid]").val(returnedData[0].AsstID);
+     $("input[name=user]").val(returnedData[0].Assignto);
+   
+    
     $("select[name=assetType]").val(returnedData[0].AsTypeID);
   let idofPro = returnedData[0].AsTypeID;
  
@@ -798,7 +822,7 @@ function(data, status){
     $("select[name=assetOriLifeId]").val(returnedData[0].OriginalLifeID);
     $("select[name=assetVenId]").val(returnedData[0].VendorID);
     $("input[name=assetStatus]").val(returnedData[0].status);
-
+ $("select[name=brand]").val(returnedData[0].BrandType);
     $("input[name=overCost]").val(returnedData[0].OverHallCost);
 
     let split_over_date = returnedData[0].OverHallDate.split("-");
@@ -807,6 +831,14 @@ function(data, status){
     console.log(new_over_date);
 
     $("input[name=assetOverallDate]").val(new_over_date);
+
+    let split_instalation_date = returnedData[0].InstallationDate.split("-");
+    let split_instalation_date_last = split_instalation_date[2].split(" ");
+    let new_inslation_date = split_instalation_date[0] + "-"+split_instalation_date[1] + "-"+split_instalation_date_last[0];
+    console.log(new_inslation_date);
+
+    $("input[name=insdate]").val(new_inslation_date);
+    
 
     $("select[name=assetState]").val(returnedData[0].State);
     $("#assetShortDesId").text(returnedData[0].des);
